@@ -7,4 +7,5 @@ target 'Pokedex' do
 
   # Pods for Pokedex
 
+  pod 'Nuke'
 end
