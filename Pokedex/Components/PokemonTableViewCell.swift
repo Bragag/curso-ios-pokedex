@@ -18,11 +18,10 @@ class PokemonTableViewCell: UITableViewCell {
     
     
     func config(with model: Pokemon) {
-        // carregar imagem do pokemon
         pictureImageView.loadImage(from: model.image)
         
-        nameLabel.text = model.name
-        idLabel.text = model.id
+        nameLabel.text = model.capitalizedName
+        idLabel.text = model.displayId
         primaryTypeImageView.image = model.types.first?.icon
         primaryTypeImageView.backgroundColor = model.types.first?.color
         

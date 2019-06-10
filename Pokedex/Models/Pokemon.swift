@@ -29,4 +29,14 @@ extension Pokemon: CustomStringConvertible {
         return  "\nPokemon: \(self.name.capitalized), com tipo(s): \(self.types)"
     }
     
+    var capitalizedName: String {
+        return name.capitalized
+    }
+    
+    var displayId: String {
+        let idWithZeros = id.leftPadding(toLength: 3, withPad: "0")
+    
+        return "#\(idWithZeros)"
+    }
+    
 }
