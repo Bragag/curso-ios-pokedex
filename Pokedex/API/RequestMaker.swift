@@ -6,6 +6,7 @@ class RequestMaker {
         
         case list
         case details(query: String)
+        case moves
         
         var url: String {
             switch self {
@@ -13,6 +14,8 @@ class RequestMaker {
                 return "list"
             case let .details(query):
                 return "details/\(query)"
+            case .moves:
+                return "moves"
             }
         }
         
@@ -30,7 +33,7 @@ class RequestMaker {
         
         let dataTask = session.dataTask(with: url) {
             (data: Data?, response: URLResponse?, error: Error?) in
-            
+            print("URL", url)
             guard error == nil else {
                 print(error!)
                 return
@@ -49,11 +52,10 @@ class RequestMaker {
                 print("error: ", error)
             }
             
-            //                print(String(data: data, encoding: .utf8)!)
         }
         
         dataTask.resume()
-
+        
     }
 }
 

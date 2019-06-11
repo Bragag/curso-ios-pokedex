@@ -8,12 +8,6 @@
 
 import Foundation
 
-struct PokemonList: Codable {
-    
-    let pokemons: [Pokemon]
-    
-}
-
 struct Pokemon: Codable {
     
     let id: String
