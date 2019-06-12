@@ -33,7 +33,6 @@ class RequestMaker {
         
         let dataTask = session.dataTask(with: url) {
             (data: Data?, response: URLResponse?, error: Error?) in
-            print("URL", url)
             guard error == nil else {
                 print(error!)
                 return
@@ -45,9 +44,11 @@ class RequestMaker {
             }
             
             do {
-                let decodedObject = try JSONDecoder().decode(T.self, from: data)
                 
+                let decodedObject = try JSONDecoder().decode(T.self, from: data)
                 completion(decodedObject)
+                
+                
             } catch let error {
                 print("error: ", error)
             }

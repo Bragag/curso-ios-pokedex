@@ -15,11 +15,11 @@ class MoveTableViewCell: UITableViewCell {
     
     
     func config(with model: Move) {
-        
-        nameLabel.text = model.description
-        typeImageView.image = model.type.icon
-        typeImageView.backgroundColor = model.type.color
-        
+        DispatchQueue.main.async {
+            self.nameLabel.text = model.description
+            self.typeImageView.image = model.type.icon
+            self.typeImageView.backgroundColor = model.type.color
+        }
     }
     
 }

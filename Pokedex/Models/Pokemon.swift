@@ -8,20 +8,19 @@
 
 import Foundation
 
+struct Status: Codable {
+    let value: Int
+    let name: String
+}
+
 struct Pokemon: Codable {
     
     let id: String
     let name: String
     let image: String
     let types: [PokemonType]
-        
-}
-
-extension Pokemon: CustomStringConvertible {
-    
-    var description: String {
-        return  "\nPokemon: \(self.name.capitalized), com tipo(s): \(self.types)"
-    }
+    let description: String?
+    let stats: [Status]?
     
     var capitalizedName: String {
         return name.capitalized
@@ -29,8 +28,9 @@ extension Pokemon: CustomStringConvertible {
     
     var displayId: String {
         let idWithZeros = id.leftPadding(toLength: 3, withPad: "0")
-    
+        
         return "#\(idWithZeros)"
     }
     
 }
+
