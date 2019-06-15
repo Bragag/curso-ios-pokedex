@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SATK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMI-MD-Od7">
+                    <rect key="frame" x="0.0" y="1.6666666666666661" width="30" height="17"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFf-8a-hV1">
+                    <rect key="frame" x="47" y="1" width="26" height="19"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coM-Dc-23E" customClass="DesignableView" customModule="Pokedex" customModuleProvider="target">
+                    <rect key="frame" x="100" y="6" width="200" height="8"/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="8r9-ff-vwV"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="tMI-MD-Od7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1Jc-wB-oXB"/>
+                <constraint firstItem="HFf-8a-hV1" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="1yg-v3-PjS"/>
+                <constraint firstItem="coM-Dc-23E" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="89G-B6-9NL"/>
+                <constraint firstItem="HFf-8a-hV1" firstAttribute="trailing" secondItem="coM-Dc-23E" secondAttribute="trailing" id="ADy-2b-Fz5"/>
+                <constraint firstItem="HFf-8a-hV1" firstAttribute="leading" secondItem="tMI-MD-Od7" secondAttribute="leading" id="DCS-0T-K6d"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="coM-Dc-23E" secondAttribute="trailing" id="P7h-5u-8XC"/>
+                <constraint firstItem="coM-Dc-23E" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="S4z-r3-mCo"/>
+                <constraint firstItem="tMI-MD-Od7" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="w5A-6b-iNm"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="47.826086956521742" y="55.434782608695656"/>
+        </view>
+    </objects>
+</document>

@@ -32,5 +32,9 @@ struct Pokemon: Codable {
         return "#\(idWithZeros)"
     }
     
+    var displayDescription: String {
+        return self.description?.replacingOccurrences(of: "\n", with: "") ?? ""
+    }
+    
 }
 

@@ -18,6 +18,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var pokemonImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pokemonImageViewCenterVerticallyConstraint: NSLayoutConstraint!
     @IBOutlet weak var pokemonImageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pokemonTypeView: PokemonTypeView!
+    @IBOutlet weak var secondPokemonTypeView: PokemonTypeView!
+    @IBOutlet weak var detailViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var detailViewMinifiedContraint: NSLayoutConstraint!
+    @IBOutlet weak var pokemonNameLabel: UILabel!
+    @IBOutlet weak var pokemonsDescriptionLabel: UILabel!
+    @IBOutlet weak var statsLabel: UILabel!
     
     var pokemon: Pokemon?
     
@@ -46,33 +53,64 @@ class DetailViewController: UIViewController {
             requestMaker.make(withEndpoint: .details(query: pokemon.id)) {
                 (pokemon: Pokemon) in
                 
+                DispatchQueue.main.async {
+                    self.pokemonsDescriptionLabel.text = pokemon.displayDescription
+                }
+                
                 self.animatePokemonImageToTop()
             }
         }
     }
     
     func animatePokemonImageToTop() {
+        
         DispatchQueue.main.async {
-            
             self.imageView.layer.removeAllAnimations()
             self.pokemonImageViewTopConstraint.priority = UILayoutPriority(rawValue: 999)
             self.pokemonImageViewCenterVerticallyConstraint.priority = UILayoutPriority(rawValue: 900)
-            self.pokemonImageViewWidthConstraint.constant = 80
-            self.pokemonImageViewHeightConstraint.constant = 80
+            
+            self.detailViewTopConstraint.priority = UILayoutPriority(rawValue: 899)
+            self.detailViewMinifiedContraint.priority = UILayoutPriority(rawValue: 998)
+            
+            self.pokemonImageViewWidthConstraint.constant = 100
+            self.pokemonImageViewHeightConstraint.constant = 100
             
             UIView.animate(withDuration: 1, animations: {
                 self.imageView.alpha = 1
                 self.view.layoutIfNeeded()
             })
         }
+        
     }
     
     func initialConfig() {
+        
         if let pokemon = self.pokemon {
+            
+            if let type = pokemon.types.first {
+                
+                self.pokemonTypeView.config(type: type)
+                
+                if pokemon.types.count > 1 {
+                    
+                    self.secondPokemonTypeView.config(type: pokemon.types[1])
+                    
+                } else {
+                    
+                    self.secondPokemonTypeView.isHidden = true
+                    
+                }
+            }
+            
             self.gradientView.startColor = pokemon.types.first?.color ?? .black
             self.gradientView.endColor = pokemon.types.first?.color?.lighter() ?? .white
             
+            self.pokemonNameLabel.text = pokemon.capitalizedName
+            
+            self.statsLabel.textColor = pokemon.types.first?.color
+            
             self.imageView.loadImage(from: pokemon.image)
+            
         }
     }
     
