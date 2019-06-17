@@ -10,13 +10,15 @@ import UIKit
 
 protocol DetailViewType: AnyObject {
     func initialConfig()
+    func animatePokemonImageToTop()
 }
 
 protocol DetailPresenterType: UIViewController {
     var view: DetailViewType? { get set }
+    var pokemon: Pokemon? { get set }
     func requestPokemon(withId from: Int) -> Pokemon
     func animatePokemon()
-    func animatePokemonImageToTop()
+
     
 }
 

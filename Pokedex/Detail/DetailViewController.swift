@@ -26,8 +26,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var pokemonsDescriptionLabel: UILabel!
     @IBOutlet weak var statsLabel: UILabel!
     
-    var pokemon: Pokemon?
-    
     private let presenter = DetailPresenter()
     
     override func viewDidLoad() {
@@ -35,18 +33,56 @@ class DetailViewController: UIViewController {
         view.accessibilityIdentifier = "detailsView"
         
         self.presenter.view = self
+        self.initialConfig()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.animatePokemon()
-        self.presenter.requestPokemon(withId: pokemon?.id ?? 1)
+        self.presenter.requestPokemon()
     }
     
     func animatePokemon() {
         UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.imageView.alpha = 0.2
         })
+    }
+    
+    @IBAction func dismissAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+extension DetailViewController: DetailViewType {
+    func initialConfig() {
+        if let pokemon = self.presenter.pokemon {
+            
+            if let type = pokemon.types.first {
+                
+                self.pokemonTypeView.config(type: type)
+                
+                if pokemon.types.count > 1 {
+                    
+                    self.secondPokemonTypeView.config(type: pokemon.types[1])
+                    
+                } else {
+                    
+                    self.secondPokemonTypeView.isHidden = true
+                    
+                }
+            }
+            
+            self.gradientView.startColor = pokemon.types.first?.color ?? .black
+            self.gradientView.endColor = pokemon.types.first?.color?.lighter() ?? .white
+            
+            self.pokemonNameLabel.text = pokemon.capitalizedName
+            
+            self.statsLabel.textColor = pokemon.types.first?.color
+            
+            self.imageView.loadImage(from: pokemon.image)
+            
+        }
     }
     
     func animatePokemonImageToTop() {
@@ -68,16 +104,5 @@ class DetailViewController: UIViewController {
             })
         }
         
-    }
-    
-    func initialConfig() {
-        if let pokemon = self.pokemon {
-            
-            
-        }
-    }
-    
-    @IBAction func dismissAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
 }
