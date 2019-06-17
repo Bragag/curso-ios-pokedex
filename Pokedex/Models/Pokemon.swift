@@ -15,7 +15,7 @@ struct Status: Codable {
 
 struct Pokemon: Codable {
     
-    let id: String
+    let id: Int
     let name: String
     let image: String
     let types: [PokemonType]
@@ -27,7 +27,7 @@ struct Pokemon: Codable {
     }
     
     var displayId: String {
-        let idWithZeros = id.leftPadding(toLength: 3, withPad: "0")
+        let idWithZeros = id
         
         return "#\(idWithZeros)"
     }

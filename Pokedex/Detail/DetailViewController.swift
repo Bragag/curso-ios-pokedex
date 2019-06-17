@@ -28,38 +28,25 @@ class DetailViewController: UIViewController {
     
     var pokemon: Pokemon?
     
+    private let presenter = DetailPresenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.accessibilityIdentifier = "detailsView"
         
-        self.initialConfig()
+        self.presenter.view = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.animatePokemon()
-        self.requestPokemon()
+        self.presenter.requestPokemon(withId: pokemon?.id ?? 1)
     }
     
     func animatePokemon() {
         UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.imageView.alpha = 0.2
         })
-    }
-    
-    func requestPokemon() {
-        if let pokemon = self.pokemon {
-            
-            let requestMaker = RequestMaker()
-            requestMaker.make(withEndpoint: .details(query: pokemon.id)) {
-                (pokemon: Pokemon) in
-                
-                DispatchQueue.main.async {
-                    self.pokemonsDescriptionLabel.text = pokemon.displayDescription
-                }
-                
-                self.animatePokemonImageToTop()
-            }
-        }
     }
     
     func animatePokemonImageToTop() {
@@ -84,32 +71,8 @@ class DetailViewController: UIViewController {
     }
     
     func initialConfig() {
-        
         if let pokemon = self.pokemon {
             
-            if let type = pokemon.types.first {
-                
-                self.pokemonTypeView.config(type: type)
-                
-                if pokemon.types.count > 1 {
-                    
-                    self.secondPokemonTypeView.config(type: pokemon.types[1])
-                    
-                } else {
-                    
-                    self.secondPokemonTypeView.isHidden = true
-                    
-                }
-            }
-            
-            self.gradientView.startColor = pokemon.types.first?.color ?? .black
-            self.gradientView.endColor = pokemon.types.first?.color?.lighter() ?? .white
-            
-            self.pokemonNameLabel.text = pokemon.capitalizedName
-            
-            self.statsLabel.textColor = pokemon.types.first?.color
-            
-            self.imageView.loadImage(from: pokemon.image)
             
         }
     }
@@ -118,4 +81,3 @@ class DetailViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
-

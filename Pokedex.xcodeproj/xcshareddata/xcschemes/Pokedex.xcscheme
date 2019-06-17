@@ -26,7 +26,18 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ABD8C93622AAC4FA00AB3718"
+            BuildableName = "Pokedex.app"
+            BlueprintName = "Pokedex"
+            ReferencedContainer = "container:Pokedex.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -35,6 +46,16 @@
                BlueprintIdentifier = "878799C822B51D7100C240E7"
                BuildableName = "PokedexTests.xctest"
                BlueprintName = "PokedexTests"
+               ReferencedContainer = "container:Pokedex.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "87E787AD22B55B6F00D87262"
+               BuildableName = "PokedexUITests.xctest"
+               BlueprintName = "PokedexUITests"
                ReferencedContainer = "container:Pokedex.xcodeproj">
             </BuildableReference>
          </TestableReference>
