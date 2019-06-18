@@ -26,6 +26,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var pokemonsDescriptionLabel: UILabel!
     @IBOutlet weak var statsLabel: UILabel!
     
+    var pokemon: Pokemon?
+    
     private let presenter = DetailPresenter()
     
     override func viewDidLoad() {
@@ -56,7 +58,7 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: DetailViewType {
     func initialConfig() {
-        if let pokemon = self.presenter.pokemon {
+        if let pokemon = self.pokemon {
             
             if let type = pokemon.types.first {
                 
@@ -85,8 +87,13 @@ extension DetailViewController: DetailViewType {
         }
     }
     
+    func additionalConfig() {
+        if let pokemon = self.pokemon {
+            self.pokemonsDescriptionLabel.text = pokemon.description
+        }
+    }
+    
     func animatePokemonImageToTop() {
-        
         DispatchQueue.main.async {
             self.imageView.layer.removeAllAnimations()
             self.pokemonImageViewTopConstraint.priority = UILayoutPriority(rawValue: 999)

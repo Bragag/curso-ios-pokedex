@@ -38,7 +38,7 @@ extension PokemonListViewController: UITableViewDelegate {
         let storyboard = self.storyboard
         if let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
             let detailPresenter = DetailPresenter()
-            detailPresenter.pokemon = self.presenter.po
+            detailViewController.pokemon = self.presenter.pokemon(at: indexPath.row)
             self.navigationController?.present(detailViewController, animated: true)
         }
     }

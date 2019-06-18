@@ -16,15 +16,10 @@ class DetailPresenter: NSObject {
     
     private let requestMaker = RequestMaker()
     
-    var pokemon: Pokemon!
-    
     func requestPokemon() {
-        print("pokemon", pokemon)
-        self.interactor.requestPokemon(withId: self.pokemon.id)
-    }
-    
-    override init() {
-        pokemon = Pokemon(id: 1, name: "A", image: "", types: [.bug], description: "a", stats: [Status(value: 1, name: "a")])
+        if let view = self.view {
+            self.interactor.requestPokemon(withId: view.pokemon?.id ?? 1)
+        }
     }
     
 }
@@ -32,10 +27,11 @@ class DetailPresenter: NSObject {
 extension DetailPresenter: DetailInteractorOutput {
     
     func dataFetched(_ data: Pokemon) {
-        self.pokemon = data
+        self.view?.pokemon = data
 
         DispatchQueue.main.async {
             self.view?.animatePokemonImageToTop()
+            self.view?.additionalConfig()
         }
         
     }
